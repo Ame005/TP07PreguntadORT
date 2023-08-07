@@ -18,19 +18,44 @@ public class BD {
         }
         return ListDificultades;
     }
-    public static List<Pregunta> ObtenerPreguntas(int dificultad, int categoria){
+    public static List<Pregunta> ObtenerPreguntas(int dificultad, int categoria)
+    {
         List <Pregunta> ListPreguntasUsar = null;
-        using (SqlConnection db = new SqlConnection(ConnectionString)){
-            string sql = "SELECT * FROM Preguntas WHERE IDDificultad = @dificultad and IDCategoria = @categoria";
-            //4 POSIBILIDADES -1 DIFICULTAD -1 CATEGORIAS -1 LAS DOS NINGUNA -1
+        using (SqlConnection db = new SqlConnection(ConnectionString))
+        {      
+            if(categoria!=-1 && dificultad!=-1)
+            {
+                string stringSQL = "SELECT * FROM Preguntas WHERE IDDificultad=@dificultad AND IDCategoria=@categoria";
+            }
+            else if(categoria==-1 && dificultad==-1) 
+            {
+                string stringSQL = "SELECT * FROM Preguntas";
+            }
+            else if(categoria==-1 && dificultad!=-1)
+            {
+                string stringSQL = "SELECT * FROM Preguntas WHERE IDDificultad=@dificultad";
+            }
+            else if(categoria!=-1 && dificultad==-1)
+            {
+                string stringSQL = "SELECT * FROM Preguntas WHERE IDCategoria=@categoria";
+            }
+            ListPreguntasUsar = db.Query<Pregunta>(sql, new {pDificultad=dificultad, pCategoria=categoria}).ToList();
         }
         return ListPreguntasUsar;
     }
-    //
-    public static List<Respuesta> ObtenerRespuestas(List<Pregunta> preguntas){
+    //al final de todo ver de no repetir codigo
+    public static List<Respuesta> ObtenerRespuestas(List<Pregunta> ListPreguntasUsar){
         List <Respuesta> ListRespuestasUsar = null;
         using (SqlConnection db = new SqlConnection(ConnectionString)){
-            
+            foreach (Pregunta item in ListPreguntasUsar){
+                string sql = "SELECT * FROM Respuestas WHERE IDPregunta = @pIdPregunta";
+                ListRespuestasUsar.AddRange(db.Query<Respuesta>(sql, new {pIdPregunta=item.IdPregunta}).ToList())
+                /*
+                - Le pasamos por parametro el ID de la pregunta para llamar a todas las respuestas (true or false)
+                - new {pIdPregunta=item.IdPregunta} esto es lo que se pasa por parametros a la query con los datos 
+                - que le llegan del programa los usa para filtrar las respuestas de acuerdo a las preguntas de la List
+                */
+            }
         }
         return ListRespuestasUsar;
     }

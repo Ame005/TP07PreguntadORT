@@ -15,4 +15,15 @@ public class HomeController : Controller
         ViewBag.Dificultades= Juego.ObtenerDificultades();
         return View("ConfigurarJuego");
     }
+    public IActionResult Comenzar(string username, int dificultad, int categoria){
+        ViewBag=Juego.CargarPartida();
+    }
+    public IActionResult Jugar(){
+
+    }
+    [HttpPost]
+    public IActionResult VerificarRespuesta(int idPregunta, int idRespuesta){
+
+    }
+
 }
