@@ -29,7 +29,7 @@ class Juego {
         if(Preguntas.ContainsKey())
         {
             Random rnd = new Random();
-            rnd.Next(1,Preguntas.Count())
+            rnd.Next(1,Preguntas.Count());
             return rnd;
         }
         else
@@ -40,11 +40,31 @@ class Juego {
     }
     public Respuesta ObtenerProximasRespuestas(int IdPregunta)
     {
-        return BD.ObtenerRespuestas(Preguntas(IdPregunta));//(Preguntas(Id.Pregunta)) o (IdPregunta) solo ¡preguntar binker?
-        //retorna respuesta correspondiente de la lista
+        return BD.ObtenerRespuestas(IdPregunta);
+        //retorna respuestas correspondiente de la lista
     }
     public bool VerificarRespuesta(int idPregunta, int idRespuesta)
     {
-
+        int i=0;
+        bool correcta=false;
+       do
+       {
+            if(Respuestas[i].IdRespuesta==idRespuesta && Respuestas[i].Correcta) // va a buscar la lista Respuestas que dentro tiene toda la respuesta (con id repuesta, id pregunta, etc) y compara con la respuesta elegida 
+            {
+                correcta=true;
+            }
+       }
+       while(correcta=false && i<Respuestas.Count)
+       
+       if(correcta)
+        {
+            PuntajeActual=PuntajeActual+100;
+            CantidadPreguntasCorrectas++;
+        }
+        else
+        {
+            Preguntas.Remove(idPregunta);
+        }
+        return correcta;
     }
 }   
