@@ -22,22 +22,22 @@ public class BD {
     {
         List <Pregunta> ListPreguntasUsar = null;
         using (SqlConnection db = new SqlConnection(ConnectionString))
-        {      
+        {   string sql="";
             if(categoria!=-1 && dificultad!=-1)
             {
-                string stringSQL = "SELECT * FROM Preguntas WHERE IDDificultad=@dificultad AND IDCategoria=@categoria";
+                sql = "SELECT * FROM Preguntas WHERE IDDificultad=@dificultad AND IDCategoria=@categoria";
             }
             else if(categoria==-1 && dificultad==-1) 
             {
-                string stringSQL = "SELECT * FROM Preguntas";
+                sql = "SELECT * FROM Preguntas";
             }
             else if(categoria==-1 && dificultad!=-1)
             {
-                string stringSQL = "SELECT * FROM Preguntas WHERE IDDificultad=@dificultad";
+                sql = "SELECT * FROM Preguntas WHERE IDDificultad=@dificultad";
             }
             else if(categoria!=-1 && dificultad==-1)
             {
-                string stringSQL = "SELECT * FROM Preguntas WHERE IDCategoria=@categoria";
+                sql = "SELECT * FROM Preguntas WHERE IDCategoria=@categoria";
             }
             ListPreguntasUsar = db.Query<Pregunta>(sql, new {pDificultad=dificultad, pCategoria=categoria}).ToList();
         }
@@ -49,7 +49,7 @@ public class BD {
         using (SqlConnection db = new SqlConnection(ConnectionString)){
             foreach (Pregunta item in ListPreguntasUsar){
                 string sql = "SELECT * FROM Respuestas WHERE IDPregunta = @pIdPregunta";
-                ListRespuestasUsar.AddRange(db.Query<Respuesta>(sql, new {pIdPregunta=item.IdPregunta}).ToList())
+                ListRespuestasUsar.AddRange(db.Query<Respuesta>(sql, new {pIdPregunta=item.IdPregunta}).ToList());
                 /*
                 - Le pasamos por parametro el ID de la pregunta para llamar a todas las respuestas (true or false)
                 - new {pIdPregunta=item.IdPregunta} esto es lo que se pasa por parametros a la query con los datos 

@@ -1,49 +1,57 @@
-class Juego {
-    string Username {get; private set;}
-    int PuntajeActual {get; private set;}
-    int CantidadPreguntasCorrectas {get; private set;}
-    List<Pregunta> Preguntas {get; private set;}
-    List<Respuesta> Respuestas {get; private set;}
+public static class Juego {
+    public static string Username {get; set;}
+    public static int PuntajeActual {get; set;}
+    public static int CantidadPreguntasCorrectas {get; set;}
+    public static List<Pregunta> Preguntas {get; set;}
+    public static List<Respuesta> Respuestas {get; set;}
 
-    public void InicializarJuego()
+    public static void InicializarJuego()
     {
-        Username=0;
+        Username="";
         PuntajeActual=0;
         CantidadPreguntasCorrectas=0;
     }
-    public List<Categoria> ObtenerCategorias()
+    public static List<Categoria> ObtenerCategorias()
     {
         return BD.ObtenerCategorias();
     }
-    public List<Dificultad> ObtenerDificultades()
+    public static List<Dificultad> ObtenerDificultades()
     {
         return BD.ObtenerDificultades();
     }
-    public void CargarPartida(string username, int dificultad, int categoria)
+    public static void CargarPartida(string username, int dificultad, int categoria)
     {
         Preguntas=BD.ObtenerPreguntas(dificultad,categoria);
         Respuestas=BD.ObtenerRespuestas(Preguntas);
     }
-    public Pregunta ObtenerProximaPregunta()
+    public static Pregunta ObtenerProximaPregunta()
     {
-        if(Preguntas.ContainsKey())
+        if(Preguntas.Count>0)
         {
             Random rnd = new Random();
-            rnd.Next(1,Preguntas.Count());
-            return rnd;
+            return Preguntas[rnd.Next(1,Preguntas.Count())];
         }
         else
         {
-            return Preguntas.Count();
+            return null;
         }
         //retorna pregunta al azar de la lista
     }
-    public Respuesta ObtenerProximasRespuestas(int IdPregunta)
+    public static List<Respuesta> ObtenerProximasRespuestas(int idPregunta)
     {
-        return BD.ObtenerRespuestas(IdPregunta);
+        List<Respuesta>RespuestasProximas= new List<Respuesta>();
+        RespuestasProximas = null;
+        foreach(Respuesta item in Respuestas)
+        {
+            if(item.IdPregunta==idPregunta)
+            {
+                RespuestasProximas.Add(item);
+            }
+        }
+        return RespuestasProximas;
         //retorna respuestas correspondiente de la lista
     }
-    public bool VerificarRespuesta(int idPregunta, int idRespuesta)
+    public static bool VerificarRespuesta(int idPregunta, int idRespuesta)
     {
         int i=0;
         bool correcta=false;
@@ -54,7 +62,7 @@ class Juego {
                 correcta=true;
             }
        }
-       while(correcta=false && i<Respuestas.Count)
+       while(correcta=false && i<Respuestas.Count);
        
        if(correcta)
         {
@@ -63,7 +71,7 @@ class Juego {
         }
         else
         {
-            Preguntas.Remove(idPregunta);
+            Preguntas.Remove(Preguntas[idPregunta]);
         }
         return correcta;
     }

@@ -14,17 +14,17 @@ public class HomeController : Controller
     }
     public IActionResult ConfigurarJuego()
     {
-        ViewBag.Iniciar= Juego.InicializarJuego();
+        Juego.InicializarJuego();
         ViewBag.Categorias= Juego.ObtenerCategorias();
         ViewBag.Dificultades= Juego.ObtenerDificultades();
         return View("ConfigurarJuego");
     }
     public IActionResult Comenzar(string username, int dificultad, int categoria){
-        ViewBag=Juego.CargarPartida(username,dificultad,categoria);
-        if (Juego.Preguntas)
-            return View("Jugar");
+        Juego.CargarPartida(username,dificultad,categoria);
+        if (Juego.Preguntas.Count>0)
+            return View("Juego");
         else
-            return View("ConfigurarJuego")
+            return View("ConfigurarJuego");
     }
     public IActionResult Jugar(){
         /*Carga en ViewBag todo lo necesario para mostrar la pregunta actual con sus respectivas respuestas 
@@ -34,10 +34,10 @@ public class HomeController : Controller
         ViewBag.Username=Juego.Username;
         ViewBag.Puntaje=Juego.PuntajeActual;
         ViewBag.PreguntaProxima=Juego.ObtenerProximaPregunta();
-        if(PreguntaProxima == 0){
+        if(ViewBag.PreguntaProxima == 0){
             return View("Fin");
         }
-        ViewBag.RespuestasProximas=Juego.ObtenerProximasRespuestas();
+        ViewBag.RespuestasProximas=Juego.ObtenerProximasRespuestas(ViewBag.PreguntaProxima.IdPregunta);//ver si funciona
         return View("Juego");
     }
     [HttpPost]
