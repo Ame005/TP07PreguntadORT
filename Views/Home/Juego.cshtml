@@ -1,0 +1,21 @@
+<section>
+    <main class="pregunta">
+        <div>
+            <h1>@ViewBag.PreguntaProxima</h1>
+        </div>
+        <div>
+            <img src="img/personajes/charlie.png">
+        </div>
+    </main>
+    @foreach (Respuesta respuesta in ViewBag.RespuestasProximas){
+        <div class="row row-cols-1 row-cols-md-2 g-4">
+            <div class="col">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">@respuesta</h5>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+</section>
