@@ -1,10 +1,10 @@
-﻿@{
-    ViewData["Title"] = "Index";
-}
-<section class="index">
-
-</section>
-<img src="#">
-<!--Logo del juego-->
-<div id="botonJugar"><a href='@Url.Action("SeleccionUsuario")'><h1>Iniciar</h1></div>
+﻿<section>
 <!--Animacion del jugar cambio de color - Sombra del div-->
+<img src="/img/Logo1.PNG" alt="Trivia">
+<div id="inicio-centrado">
+    <form action='@Url.Action("ConfigurarJuego")'>
+        <input class="botonUser" type="text" name="username">
+        <input class="botonJugar" type="submit" value= "START">
+    </form>
+</div>
+</section>

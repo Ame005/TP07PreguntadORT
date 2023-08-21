@@ -11,16 +11,48 @@ html {
 }
 
 body {
-  margin: 20px 60px 0px 20px;
+  margin:0;
+  background-image: url("../img/background-index.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
 }
-
-footer {
-  position: fixed; 
-  bottom: 0; 
-  margin: 10px 0px 20px 0px;
-}
-.index{
+section{
   width: 100%;
-  height: 100%;
-  background-image: url("Background-index.PNG");
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+section img{
+  position: absolute;
+  top:14.3%;
+  width: 51.4%;
+  height: auto;
+}
+section #inicio-centrado{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+section #inicio-centrado .botonJugar{
+  position: absolute;
+  top: 66%;
+  margin: 0;
+  padding: 5px;
+  padding-left: 20px;
+  padding-right: 20px;
+  background-color: #fabf5c;
+}
+section #inicio-centrado .botonJugar input[submit]{
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  text-decoration: none;
+  color:black;
+}
+section #inicio-centrado .botonUser{
+  position: absolute;
+  top: 60%;
+  margin: 0;
+  padding-top: 5px;
+  background-color: #000000;
+  border: 3px solid #fabf5c;
 }

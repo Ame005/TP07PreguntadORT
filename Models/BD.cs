@@ -3,7 +3,7 @@ using Dapper;
 public class BD {
     private static string ConnectionString = @"Server=localhost;DataBase=Elecciones;Trusted_Connection=True;";
     public static List<Categoria> ObtenerCategorias(){
-        List <Categoria> ListCategorias = null;
+        List <Categoria> ListCategorias = new List<Categoria>();
         using (SqlConnection db = new SqlConnection(ConnectionString)){
             string sql = "SELECT * FROM Categorias";
             ListCategorias = db.Query<Categoria>(sql).ToList();
