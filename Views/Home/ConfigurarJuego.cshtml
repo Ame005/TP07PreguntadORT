@@ -1,4 +1,24 @@
-<!--@foreach(string categoria in ViewBag.Categorias){
-<label><input type="radio" name="categoria" value="@categoria"><img src=""></label>}
--->
-<h1>Hello world</h1>
+<section id="select-cat-dif">
+    
+<form action='@Url.Action("ConfigurarJuego")'>
+    <h1>PICK TOPIC</h1>
+    <main>
+    
+    @foreach(Categoria categoria in ViewBag.Categorias)
+    {
+        <div class="categoria">
+            <label><input type="radio" name="categoria" value="@categoria"><img src="@categoria.Foto" alt="@categoria.Nombre"></label>
+        </div>
+    }
+    <div class="categoria">
+        <label><input type="radio" name="categoria" value="-1"><img src="/img/todasCategorias.PNG" alt="Todas las categorías"></label>
+    </div>     
+    </main>
+    <h1>PICK DIFFICULTY</h1>
+    <main>
+    
+
+    </main>
+    <button type="submit" class="btn btn-warning">PLAY</button>
+    </form>
+</section>
