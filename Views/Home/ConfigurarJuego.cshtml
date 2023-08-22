@@ -16,11 +16,11 @@
         <main>
             @foreach(Dificultad dificultad in ViewBag.Dificultades){
                 <div class="dificultad">
-                    <label><input type="radio" name="dificultad" value="@dificultad"><h1>@dificultad</h1></label>
+                    <label><input type="radio" name="dificultad" value="@dificultad"><h4>DIFICULTAD @dificultad.Nombre</h4></label>
                 </div>
             }
             <div class="dificultad">
-                <label><input type="radio" name="dificultad" value="-1"><img src="" alt="Todas las dificultades"></label>
+                <label><input type="radio" name="dificultad" value="-1"><h4>TODAS LAS DIFICULTADES</h4></label>
             </div>
         </main>
         <button type="submit" class="btn btn-warning">PLAY</button>
