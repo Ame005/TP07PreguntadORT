@@ -8,10 +8,6 @@ public class HomeController : Controller
     {
         return View();
     }
-    public IActionResult SeleccionUsuario(){
-        
-        return View();
-    }
     public IActionResult ConfigurarJuego()
     {
         Juego.InicializarJuego();
@@ -21,8 +17,8 @@ public class HomeController : Controller
     }
     public IActionResult Comenzar(string username, int dificultad, int categoria){
         Juego.CargarPartida(username,dificultad,categoria);
-        if (Juego.Preguntas.Count>0)
-            return View("Juego");
+        if (Juego.Preguntas.Count>0 && dificultad!=0 && categoria!=0)
+            return RedirectToAction("Jugar");
         else
             return View("ConfigurarJuego");
     }
@@ -33,8 +29,8 @@ public class HomeController : Controller
         guardando estos datos en ViewBag y retorna la view Juego.*/
         ViewBag.Username=Juego.Username;
         ViewBag.Puntaje=Juego.PuntajeActual;
-        ViewBag.PreguntaProxima=Juego.ObtenerProximaPregunta();
-        if(ViewBag.PreguntaProxima == 0){
+        ViewBag.PreguntaProxima= Juego.ObtenerProximaPregunta();
+        if(ViewBag.PreguntaProxima == null){
             return View("Fin");
         }
         ViewBag.RespuestasProximas=Juego.ObtenerProximasRespuestas(ViewBag.PreguntaProxima.IdPregunta);//ver si funciona

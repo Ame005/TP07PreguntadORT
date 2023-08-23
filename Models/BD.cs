@@ -11,7 +11,7 @@ public class BD {
         return ListCategorias;
     }
     public static List<Dificultad> ObtenerDificultades(){
-        List <Dificultad> ListDificultades = null;
+        List <Dificultad> ListDificultades = new List <Dificultad> ();
         using (SqlConnection db = new SqlConnection(ConnectionString)){
             string sql = "SELECT * FROM Dificultades";
             ListDificultades = db.Query<Dificultad>(sql).ToList();
@@ -20,7 +20,7 @@ public class BD {
     }
     public static List<Pregunta> ObtenerPreguntas(int dificultad, int categoria)
     {
-        List <Pregunta> ListPreguntasUsar = null;
+        List <Pregunta> ListPreguntasUsar = new List <Pregunta> ();
         using (SqlConnection db = new SqlConnection(ConnectionString))
         {   string sql="";
             if(categoria!=-1 && dificultad!=-1)
@@ -39,13 +39,13 @@ public class BD {
             {
                 sql = "SELECT * FROM Preguntas WHERE IDCategoria=@categoria";
             }
-            ListPreguntasUsar = db.Query<Pregunta>(sql, new {pDificultad=dificultad, pCategoria=categoria}).ToList();
+            ListPreguntasUsar = db.Query<Pregunta>(sql, new {dificultad=dificultad, categoria=categoria}).ToList();
         }
         return ListPreguntasUsar;
     }
     //al final de todo ver de no repetir codigo
     public static List<Respuesta> ObtenerRespuestas(List<Pregunta> ListPreguntasUsar){
-        List <Respuesta> ListRespuestasUsar = null;
+        List <Respuesta> ListRespuestasUsar = new List <Respuesta> ();
         using (SqlConnection db = new SqlConnection(ConnectionString)){
             foreach (Pregunta item in ListPreguntasUsar){
                 string sql = "SELECT * FROM Respuestas WHERE IDPregunta = @pIdPregunta";

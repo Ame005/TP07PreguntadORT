@@ -1,11 +1,11 @@
 <section id="select-cat-dif">
-    <form action='@Url.Action("ConfigurarJuego")'>
+    <form action='@Url.Action("Comenzar")'>
         <h1>PICK TOPIC</h1>
         <main>
             @foreach(Categoria categoria in ViewBag.Categorias)
             {
                 <div class="categoria">
-                    <label><input type="radio" name="categoria" value="@categoria"><img src="@categoria.Foto" alt="@categoria.Nombre"></label>
+                    <label><input type="radio" name="categoria" value="@categoria.IdCategoria"><img src="@categoria.Foto" alt="@categoria.Nombre"></label>
                 </div>
             }
             <div class="categoria">
@@ -16,11 +16,11 @@
         <main>
             @foreach(Dificultad dificultad in ViewBag.Dificultades){
                 <div class="dificultad">
-                    <label><input type="radio" name="dificultad" value="@dificultad"><h4>DIFICULTAD @dificultad.Nombre</h4></label>
+                    <label><input type="radio" name="dificultad" value="@dificultad.IdDificultad"><img src="~/img/@(dificultad.Nombre).png" alt="@dificultad.Nombre"></label>
                 </div>
             }
             <div class="dificultad">
-                <label><input type="radio" name="dificultad" value="-1"><h4>TODAS LAS DIFICULTADES</h4></label>
+                <label><input type="radio" name="dificultad" value="-1"><img src="/img/todasDificultades.png" alt="Todas las dificultades"></label>
             </div>
         </main>
         <button type="submit" class="btn btn-warning">PLAY</button>
