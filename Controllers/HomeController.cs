@@ -30,9 +30,11 @@ public class HomeController : Controller
         ViewBag.Username=Juego.Username;
         ViewBag.Puntaje=Juego.PuntajeActual;
         ViewBag.PreguntaProxima= Juego.ObtenerProximaPregunta();
+        Console.WriteLine(ViewBag.PreguntaProxima);
         if(ViewBag.PreguntaProxima == null){
             return View("Fin");
         }
+        
         ViewBag.RespuestasProximas=Juego.ObtenerProximasRespuestas(ViewBag.PreguntaProxima.IdPregunta);//ver si funciona
         return View("Juego");
     }
