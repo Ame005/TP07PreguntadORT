@@ -34,7 +34,6 @@ public class HomeController : Controller
         if(ViewBag.PreguntaProxima == null){
             return View("Fin");
         }
-        
         ViewBag.RespuestasProximas=Juego.ObtenerProximasRespuestas(ViewBag.PreguntaProxima.IdPregunta);
         return View("Juego");
     }
