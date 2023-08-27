@@ -31,7 +31,7 @@ public class HomeController : Controller
         ViewBag.Username=Juego.Username;
         ViewBag.Puntaje=Juego.PuntajeActual;
         ViewBag.PreguntaProxima= Juego.ObtenerProximaPregunta();
-        if(ViewBag.PreguntaProxima == null){
+        if(ViewBag.PreguntaProxima == null || ViewBag.Puntaje=1500){
             return View("Fin");
         }
         
@@ -44,8 +44,14 @@ public class HomeController : Controller
         también cuál era la respuesta correcta).*/
         Console.WriteLine(idPregunta);
         Console.WriteLine(idRespuesta);
-        ViewBag.Acierto=Juego.VerificarRespuesta(idPregunta,idRespuesta);
-        //ViewBag.RespuestaCorrecta=Juego.correcta;
+        Respuesta[] resultadoRespuesta =Juego.VerificarRespuesta(idPregunta,idRespuesta);
+        if (resultadoRespuesta[0]==resultadoRespuesta[1]){
+            ViewBag.Acierto=true;
+        }else {
+            ViewBag.Acierto=false;
+            ViewBag.RespuestaIncorrecta=resultadoRespuesta[0];
+        }
+        ViewBag.RespuestaCorrecta=resultadoRespuesta[1];
         return View("Respuesta");
     }
 
