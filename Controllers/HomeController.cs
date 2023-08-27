@@ -22,6 +22,7 @@ public class HomeController : Controller
         else
             return View("ConfigurarJuego");
     }
+    [HttpPost]
     public IActionResult Jugar(){
         /*Carga en ViewBag todo lo necesario para mostrar la pregunta actual con sus respectivas respuestas 
         (que proviene del método ObtenerProximaPregunta. Si ya no hay más preguntas disponibles, retorna la 
@@ -30,19 +31,19 @@ public class HomeController : Controller
         ViewBag.Username=Juego.Username;
         ViewBag.Puntaje=Juego.PuntajeActual;
         ViewBag.PreguntaProxima= Juego.ObtenerProximaPregunta();
-        Console.WriteLine(ViewBag.PreguntaProxima);
         if(ViewBag.PreguntaProxima == null){
             return View("Fin");
         }
         
-        ViewBag.RespuestasProximas=Juego.ObtenerProximasRespuestas(ViewBag.PreguntaProxima.IdPregunta);//ver si funciona
+        ViewBag.RespuestasProximas=Juego.ObtenerProximasRespuestas(ViewBag.PreguntaProxima.IdPregunta);
         return View("Juego");
     }
-    [HttpPost]
     public IActionResult VerificarRespuesta(int idPregunta, int idRespuesta){
         /*Recibe el id de la respuesta elegida, invoca al método VerificarRespuesta de la clase Juego y 
         retorna la view Respuesta, enviando por ViewBag si fue correcta o no. (Como opcional, podés enviar 
         también cuál era la respuesta correcta).*/
+        Console.WriteLine(idPregunta);
+        Console.WriteLine(idRespuesta);
         ViewBag.Acierto=Juego.VerificarRespuesta(idPregunta,idRespuesta);
         //ViewBag.RespuestaCorrecta=Juego.correcta;
         return View("Respuesta");

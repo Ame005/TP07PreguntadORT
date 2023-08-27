@@ -1,0 +1,30 @@
+<section class="juego">
+    <main class="pregunta">
+        <div>
+            <p>@ViewBag.PreguntaProxima.Enunciado</p>
+        </div>
+        <div>
+            <img src="@ViewBag.PreguntaProxima.Foto">
+        </div>
+        
+    </main>
+    <main class="respuesta">
+    <form action='@Url.Action("VerificarRespuesta")'>
+
+        
+        @foreach (Respuesta respuesta in ViewBag.RespuestasProximas)
+        {
+            <label><input type="radio" name="respuesta" value="@respuesta.IdRespuesta">
+                <div class="@respuesta.Correcta">
+                    <h5>@respuesta.Contenido</h5>
+                    
+                </div>
+                
+            </label>
+        }
+        <input type="hidden" name="pregunta" value="@ViewBag.PreguntaProxima.IdPregunta">
+        <input type="submit">
+    </form>
+    </main>
+    
+</section>

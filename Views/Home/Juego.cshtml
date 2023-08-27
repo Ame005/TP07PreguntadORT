@@ -1,21 +1,25 @@
-<section>
+<section class="juego">
     <main class="pregunta">
         <div>
             <p>@ViewBag.PreguntaProxima.Enunciado</p>
         </div>
-        <div>
-            <img src="@ViewBag.PreguntaProxima.Foto">
-        </div>
-    </main>
-    <main class="respuesta">
-    <form class="respuesta" action='@Url.Action("VerificarRespuesta")'>
-        @foreach (Respuesta respuesta in ViewBag.RespuestasProximas)
-        {
+        @if (ViewBag.PreguntaProxima.Foto!=null){
             <div>
-                <label><input type="radio" name="respuesta" value="@respuesta.IdRespuesta"><h5>@respuesta.Contenido</h5></label>
+                <img src="@ViewBag.PreguntaProxima.Foto">
             </div>
         }
-        
-    </form>
     </main>
+    
+    <main class="respuesta">
+    @foreach (Respuesta respuesta in ViewBag.RespuestasProximas)
+        {
+            <a href='@Url.Action("VerificarRespuesta","Home", new {idPregunta=ViewBag.PreguntaProxima.IdPregunta,idRespuesta=respuesta.IdRespuesta})' method="post">
+                <div>
+                    <button><h5>@respuesta.Contenido</h5></button>
+                </div>
+            </a>
+        }
+    </main>
+    
+    
 </section>

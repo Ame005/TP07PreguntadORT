@@ -15,19 +15,22 @@ body {
   background-repeat: no-repeat;
   background-size: cover;
 }
-section{
+img {
+  width: 100%;
+}
+section {
   width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
 }
-section #logo{
+section #logo {
   position: absolute;
-  top: 15%;
+  top: 20%;
   width: 51.4%;
 }
-section .inicio-centrado{
+section .inicio-centrado {
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -41,12 +44,12 @@ section .inicio-centrado form {
   align-items: center;
   justify-content: center;
 }
-section .inicio-centrado .btn-warning{
+section .inicio-centrado .btn-warning {
   position: absolute;
   margin-top: 1%;
   top: 66%;
 }
-section .inicio-centrado .btn-outline-warning{
+section .inicio-centrado .btn-outline-warning {
   position: absolute;
   top: 60%;
   margin-bottom: 1%;
@@ -119,44 +122,55 @@ section .inicio-centrado .btn-outline-warning{
   border: 4px solid #FDD64F;
 }
 
-/*Juego*/
 
 /*Juego*/
 
-.juego:not(.lista-horizontal){
-  background-color: black;
+.juego{
+  width: 100%;
+  height: 100%;
+  padding: 5%;
+  background-image: url(https://th.bing.com/th/id/R.32764e0c7f829ceff22fd20954ebe055?rik=DI0OFkjCPXTaOA&pid=ImgRaw&r=0);
+  background-size: cover;
+  background-repeat: no-repeat;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
 }
 .pregunta{
-  width: 50%;
-  height: auto;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-around;
-  align-items: center;
-  flex-wrap: wrap;
-  margin-top: 6%;
-  margin-bottom: 1%;
-  padding: 20px;
-  border-radius: 50px;
-  background-color: #DCDCDC;
-  box-shadow:10px 10px 10px #8c0000 ;
+    width: 50%;
+    height: auto;
+    color: white;
+    margin: 1%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    padding: 20px;
+    border-radius: 50px;
+    background-color: #790000;
+    box-shadow: 0px 0px 10px 10px #8c0000 ;
 }
 .pregunta div{
-width: 40%;
-height: 100%;
-margin: 1%;
-display: flex;
-flex-direction: column;
-justify-content: center;
-align-items: center;
+  width: 40%;
+  height: auto;
+  margin: 1%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 .pregunta img {
-width: 80%;
-height: auto;
+  width: 80%;
+  height: auto;
+  border-radius: 20px;
+}
+.pregunta h1
+{
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  font-size: 28px;
+  font-weight: bold;
+  text-align: center;
 }
 .pregunta p{
   font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
@@ -166,27 +180,114 @@ height: auto;
 
 .respuesta
 {
-  width: 72%;
-  height: 250px;
+  width: 50%;
+  height: auto;
   display: flex;
-  flex-wrap: wrap;
-  justify-content: space-around;
-  align-items: center;
-}
-.respuesta form div {
-  background-color: #DCDCDC;
-  width: 47%;
-  height: 47%;
-  display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
-  border-radius: 50px;
-  margin: 10px;
+  text-align: center;
 }
-[type=radio] + div{
+.respuesta a{
+  width: 100%;
+  height: auto;
+}
+.respuesta a div{
+  width: 100%;
+  height: auto;
+  margin: 1.5%;
+  padding: 2.5% 10%;  
+  background-color: #f1f1f1;
+  border-radius: 20px;
+}
+.respuesta a div:hover{
+  background-color: #c5c5c5;
+}
+.respuesta a div h5
+{
+  color: black;
+  width: 100%;
+  margin: 0;
+  font-size: 24px;
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  font-weight: bold;
+}
+form label[type=summit] 
+{ 
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+a div [type=button]
+{
   cursor: pointer;
 }
+a div [type=button]:checked
+{
+  width: 100%;
+  height: 100%;
+  background-color: #c5c5c5;
+}
+[type=button] { 
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+/*Perdiste*/
+#Perdida {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-top: 13%;
+}
+#Perdida h1{
+    font-size: 125px;
+    position: relative;
+    margin-top: 15%;
+    animation-name: animacion;
+    animation-duration: 1s;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+    text-decoration: none;
+}
+#Perdida a {
+  text-decoration: none;
+}
+  
+@keyframes animacion{
+    0% {color:red;}
+    50% {color:orange;}
+    100% {color: yellow;}
+}
+/*Victoria*/
+#Victoria {
+  display: flex;
+  justify-content: center;
+  margin-top: 23%;
+  width: 100%;
+  font-size: 100%;
+  background: none;
+  transition: font-size 2s, transform 2s;
+}
+#Victoria a {
+  text-decoration: none;
+}
+#Victoria:hover {
+  font-size: 400%;
+  font-weight: bold;
+  transform: scale(4,4);
+}
+#Victoria h1 {
+  animation-name: animacion2;
+  animation-duration: 1.5s;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+}
 
-[type=radio]:checked + div{
-  border: 4px solid #FDD64F;
+@keyframes animacion2 {
+  0% {color: rgb(4, 212, 4);}
+  50% {color:  rgb(230, 47, 206)}
+  100% {color:  rgb(221, 215, 44)}
 }
