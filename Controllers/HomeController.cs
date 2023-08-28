@@ -23,15 +23,16 @@ public class HomeController : Controller
             return View("ConfigurarJuego");
     }
     [HttpPost]
-    public IActionResult Jugar(){
+    public IActionResult Jugar(bool acierto){
         /*Carga en ViewBag todo lo necesario para mostrar la pregunta actual con sus respectivas respuestas 
         (que proviene del método ObtenerProximaPregunta. Si ya no hay más preguntas disponibles, retorna la 
         view Fin. Si el método retorna una pregunta, invoca a ObtenerProximasRespuestas de la clase Juego 
         guardando estos datos en ViewBag y retorna la view Juego.*/
         ViewBag.Username=Juego.Username;
         ViewBag.Puntaje=Juego.PuntajeActual;
+        ViewBag.Acierto=acierto;
         ViewBag.PreguntaProxima= Juego.ObtenerProximaPregunta();
-        if(ViewBag.PreguntaProxima == null || ViewBag.Puntaje=1500){
+        if(ViewBag.PreguntaProxima == null || ViewBag.Puntaje==1000 || ViewBag.Acierto==false){
             return View("Fin");
         }
         
