@@ -1,8 +1,8 @@
 <section>
     @if(!ViewBag.Acierto){
-        <div id="Perdida"><a href="index.html"><h1>PERDISTE :(</h1></a></div>
+        <div id="Perdida"><a href='@Url.Action("Index")'><h1>PERDISTE :(</h1></a></div>
     }else if (ViewBag.Puntaje==1000||ViewBag.PreguntaProxima==null){
-        <div id="Victoria"><a href="index.html"><h1>¡GANASTE!</h1></a></div>
+        <div id="Victoria"><a href='@Url.Action("Index")'><h1>¡GANASTE!</h1></a></div>
     }
     <a href='@Url.Action("ConfigurarJuego")'>
         <button type="button" class="btn btn-warning">PLAY AGAIN</button>

@@ -39,39 +39,48 @@ public static class Juego {
     }
     public static List<Respuesta> ObtenerProximasRespuestas(int idPregunta)
     {
-        List<Respuesta>RespuestasProximas= new List<Respuesta>();
+        List<Respuesta> RespuestasProximas= new List<Respuesta>();
         foreach(Respuesta item in Respuestas)
         {
             if(item.IdPregunta==idPregunta)
             {
                 RespuestasProximas.Add(item);
+                Console.WriteLine(item);
             }
         }
         return RespuestasProximas;
         //retorna respuestas correspondiente de la lista
     }
-    public static Respuesta[] VerificarRespuesta(int idPregunta, int idRespuesta)
+    public static bool VerificarRespuesta(int idPregunta, int idRespuesta)
     {
-        int i=0;
-        bool correcta=false;
-        Console.WriteLine("Llego a Juego");
-        Console.WriteLine("Pregunta:"+idPregunta);
-        Console.WriteLine("Respuesta:"+idRespuesta);
-       do
-       {
-            if(Respuestas[i].IdRespuesta==idRespuesta && Respuestas[i].Correcta) // va a buscar la lista Respuestas que dentro tiene toda la respuesta (con id repuesta, id pregunta, etc) y compara con la respuesta elegida 
-            {
-                correcta=true;
+        bool correcta = false;
+        Console.WriteLine("LLego a Juego");
+        Console.WriteLine("IdRespuesta: " + idRespuesta);
+        Console.WriteLine("IdPregunta: " + idPregunta);
+     
+        Respuesta respuestaCorrecta = new Respuesta();
+        
+        /*filtra las respuesta por pregunta*/
+        foreach(Respuesta item in Respuestas){
+            if(item.Correcta == true && item.IdPregunta == idPregunta){
+                respuestaCorrecta = item;
             }
-       }
-       while(correcta==false && i<Respuestas.Count);
-       if(correcta)
-        {
-            PuntajeActual=PuntajeActual+100;
-            CantidadPreguntasCorrectas++;
-            Preguntas.Remove(Preguntas[idPregunta]);
         }
-        Respuesta[] ambasRespuestas = {Respuestas[idRespuesta], Respuestas.Find(x=>x.IdPregunta==idPregunta && x.Correcta)};
-        return ambasRespuestas;
+        Console.WriteLine("Respuesta correcta: " + respuestaCorrecta.Contenido + ". IdPregunta: " + respuestaCorrecta.IdPregunta);
+        if(idPregunta == respuestaCorrecta.IdPregunta && idRespuesta == respuestaCorrecta.IdRespuesta ){
+                Console.WriteLine("Mismo idRespuesta");
+                correcta = true;
+                PuntajeActual++;
+        }
+        for(int i=0;i<Preguntas.Count();i++)
+        {
+            if(Preguntas[i].IdPregunta == idPregunta)
+            {
+                Preguntas.Remove(Preguntas[i]);
+                Console.WriteLine("BORRO LA PREGUNTA");       
+            }
+        }
+        return correcta;  
     }
+    
 }   

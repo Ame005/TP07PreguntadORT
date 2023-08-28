@@ -15,6 +15,17 @@ body {
   background-repeat: no-repeat;
   background-size: cover;
 }
+header{
+  width: 60%;
+  position: absolute;
+  top: 10px;
+  left: 10px;
+}
+footer{
+  position: absolute;
+  bottom: 0;
+  color: #FDD64F;
+}
 img {
   width: 100%;
 }
@@ -188,11 +199,18 @@ section .inicio-centrado .btn-outline-warning {
   align-items: center;
   text-align: center;
 }
-.respuesta a{
+.respuesta form{
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.respuesta form a{
   width: 100%;
   height: auto;
 }
-.respuesta a div{
+.respuesta form a{
   width: 100%;
   height: auto;
   margin: 1.5%;
@@ -200,10 +218,10 @@ section .inicio-centrado .btn-outline-warning {
   background-color: #f1f1f1;
   border-radius: 20px;
 }
-.respuesta a div:hover{
+.respuesta form a:hover{
   background-color: #c5c5c5;
 }
-.respuesta a div h5
+.respuesta a h5
 {
   color: black;
   width: 100%;
@@ -212,28 +230,14 @@ section .inicio-centrado .btn-outline-warning {
   font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
   font-weight: bold;
 }
-form label[type=summit] 
-{ 
-  position: absolute;
-  opacity: 0;
-  width: 0;
-  height: 0;
+
+.respuesta form a
+{
+  text-decoration: none;
 }
-a div [type=button]
+a [type=radio]
 {
   cursor: pointer;
-}
-a div [type=button]:checked
-{
-  width: 100%;
-  height: 100%;
-  background-color: #c5c5c5;
-}
-[type=button] { 
-  position: absolute;
-  opacity: 0;
-  width: 0;
-  height: 0;
 }
 /*Perdiste*/
 #Perdida {
