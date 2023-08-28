@@ -21,6 +21,7 @@ public static class Juego {
     }
     public static void CargarPartida(string username, int dificultad, int categoria)
     {
+        Username=username;
         Preguntas=BD.ObtenerPreguntas(dificultad,categoria);
         Respuestas=BD.ObtenerRespuestas(Preguntas);
     }
