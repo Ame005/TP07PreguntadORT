@@ -11,14 +11,14 @@
     </main>
     
     <main class="respuesta">
+    <form action='@Url.Action("VerificarRespuesta", new {idPregunta = ViewBag.PreguntaProxima.IdPregunta})' method="post">
     @foreach (Respuesta respuesta in ViewBag.RespuestasProximas)
         {
-            <a href='@Url.Action("VerificarRespuesta","Home", new {idPregunta=ViewBag.PreguntaProxima.IdPregunta,idRespuesta=respuesta.IdRespuesta})' method="post">
-                <div>
-                    <button><h5>@respuesta.Contenido</h5></button>
-                </div>
-            </a>
+            <div>
+                <input type="radio" value="@respuesta.IdRespuesta" name="idRespuesta"><label><h5>@respuesta.Contenido</h5></label>
+            </div>
         }
+    </form>
     </main>
     
     

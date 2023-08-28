@@ -50,7 +50,7 @@ public static class Juego {
         return RespuestasProximas;
         //retorna respuestas correspondiente de la lista
     }
-    public static bool VerificarRespuesta(int idPregunta, int idRespuesta)
+    public static Respuesta[] VerificarRespuesta(int idPregunta, int idRespuesta)
     {
         int i=0;
         bool correcta=false;
@@ -65,13 +65,13 @@ public static class Juego {
             }
        }
        while(correcta==false && i<Respuestas.Count);
-       
        if(correcta)
         {
             PuntajeActual=PuntajeActual+100;
             CantidadPreguntasCorrectas++;
             Preguntas.Remove(Preguntas[idPregunta]);
         }
-        return correcta;
+        Respuesta[] ambasRespuestas = {idRespuesta, Respuestas.Find(x=>x.IdPregunta==idPregunta && x.Correcta)};
+        return ambasRespuestas;
     }
 }   

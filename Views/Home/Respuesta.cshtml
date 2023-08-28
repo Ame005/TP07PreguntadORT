@@ -6,12 +6,8 @@
         <div>
             <img src="@ViewBag.PreguntaProxima.Foto">
         </div>
-        
     </main>
     <main class="respuesta">
-    <form action='@Url.Action("VerificarRespuesta")'>
-
-        
         @foreach (Respuesta respuesta in ViewBag.RespuestasProximas)
         {
             <label><input type="radio" name="respuesta" value="@respuesta.IdRespuesta">
@@ -22,9 +18,44 @@
                 
             </label>
         }
-        <input type="hidden" name="pregunta" value="@ViewBag.PreguntaProxima.IdPregunta">
-        <input type="submit">
-    </form>
     </main>
-    
 </section>
+<!--
+    @if(ViewBag.Acierto){
+        <main class="pregunta">
+            <div>
+                <p>@ViewBag.PreguntaProxima.Enunciado</p>
+            </div>
+            <div>
+                <img src="@ViewBag.PreguntaProxima.Foto">
+            </div>
+        </main>
+        <main class="respuesta">
+            @foreach (Respuesta respuesta in ViewBag.RespuestasProximas)
+            {
+                @if(respuesta.IdRespuesta==ViewBag.RespuestaCorrecta){
+                    <label>
+                        <div class="@respuesta.Correcta">
+                            <h5>@respuesta.Contenido</h5>
+                        </div>
+                    </label>
+                }else if(respuesta.IdRespuesta==ViewBag.RespuestaIncorrecta){
+                    <label>
+                        <div class="@respuesta.Incorrecta">
+                            <h5>@respuesta.Contenido</h5>
+                        </div>
+                    </label>
+                }else{
+                    <label>
+                        <div>
+                            <h5>@respuesta.Contenido</h5>
+                        </div>
+                    </label>
+                }
+            }
+        </main>
+        <a href='UrlAction("Jugar")'>
+            <button>Continuar</button>
+        </a>
+    }
+-->
