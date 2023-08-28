@@ -71,7 +71,7 @@ public static class Juego {
             CantidadPreguntasCorrectas++;
             Preguntas.Remove(Preguntas[idPregunta]);
         }
-        Respuesta[] ambasRespuestas = {idRespuesta, Respuestas.Find(x=>x.IdPregunta==idPregunta && x.Correcta)};
+        Respuesta[] ambasRespuestas = {Respuestas[idRespuesta], Respuestas.Find(x=>x.IdPregunta==idPregunta && x.Correcta)};
         return ambasRespuestas;
     }
 }   
