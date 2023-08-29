@@ -2,8 +2,6 @@
 <section>
     <main class="pregunta">
         <div>
-        
-            <h5>@ViewBag.Categorias[ViewBag.PreguntaProxima.IdCategoria].Nombre</h5>
             <p>@ViewBag.PreguntaProxima.Enunciado</p>
         </div>
         @if (ViewBag.PreguntaProxima.Foto!=null){
@@ -14,15 +12,22 @@
     </main>
     
     <main class="respuesta">
-    <form action= '@Url.Action("VerificarRespuesta")' method="post">
-    @foreach (Respuesta respuesta in ViewBag.RespuestasProximas)
+    <form action='@Url.Action("VerificarRespuesta")' method="post">        
+        
+        @foreach (Respuesta respuesta in ViewBag.RespuestasProximas)
         {
-            <a href= '@Url.Action("VerificarRespuesta, new {idPregunta=ViewBag.PreguntaProxima.IdPregunta,idRespuesta=respuesta.IdRespuesta}")'><input type="radio" value="@respuesta.IdRespuesta" name="idRespuesta"><h5>@respuesta.Contenido</h5></a>
-
+            <div class="opcion">
+                <input type="hidden" name="idPregunta" value="@respuesta.IdPregunta">
+                <input type="radio" class="opcion" name="idRespuesta" value="@respuesta.IdRespuesta">
+                <h5>@respuesta.Contenido</h5>
+            </div>
         }
+        <button type="submit" class="btn btn-warning">Verificar</button>
+       
     </form>
-    </main>
-    
+</main>
+
+
     
 </section>
 </body>

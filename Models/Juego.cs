@@ -4,10 +4,11 @@ public static class Juego {
     public static int CantidadPreguntasCorrectas {get; set;}
     public static List<Pregunta> Preguntas {get; set;}
     public static List<Respuesta> Respuestas {get; set;}
+    public static int CantidadPreguntasGeneral {get; set;}
 
-    public static void InicializarJuego()
+    public static void InicializarJuego(string username)
     {
-        Username="";
+        Username=username;
         PuntajeActual=0;
         CantidadPreguntasCorrectas=0;
     }
@@ -27,10 +28,10 @@ public static class Juego {
     }
     public static Pregunta ObtenerProximaPregunta()
     {
-        if(Preguntas.Count>0)
+        if(Preguntas.Count()>0)
         {
             Random rnd = new Random();
-            return Preguntas[rnd.Next(1,Preguntas.Count())];
+            return Preguntas[rnd.Next(0,Preguntas.Count())];
         }
         else
         {
@@ -55,32 +56,31 @@ public static class Juego {
     public static bool VerificarRespuesta(int idPregunta, int idRespuesta)
     {
         bool correcta = false;
-        Console.WriteLine("LLego a Juego");
-        Console.WriteLine("IdRespuesta: " + idRespuesta);
-        Console.WriteLine("IdPregunta: " + idPregunta);
      
         Respuesta respuestaCorrecta = new Respuesta();
         
         /*filtra las respuesta por pregunta*/
-        foreach(Respuesta item in Respuestas){
-            if(item.Correcta == true && item.IdPregunta == idPregunta){
+        foreach(Respuesta item in Respuestas)
+        {
+            if(item.Correcta == true && item.IdPregunta == idPregunta)
+            {
                 respuestaCorrecta = item;
             }
         }
-        Console.WriteLine("Respuesta correcta: " + respuestaCorrecta.Contenido + ". IdPregunta: " + respuestaCorrecta.IdPregunta);
         if(idPregunta == respuestaCorrecta.IdPregunta && idRespuesta == respuestaCorrecta.IdRespuesta ){
-                Console.WriteLine("Mismo idRespuesta");
                 correcta = true;
+                CantidadPreguntasCorrectas++;
                 PuntajeActual++;
         }
         for(int i=0;i<Preguntas.Count();i++)
         {
             if(Preguntas[i].IdPregunta == idPregunta)
             {
-                Preguntas.Remove(Preguntas[i]);
-                Console.WriteLine("BORRO LA PREGUNTA");       
+                CantidadPreguntasGeneral++;
+                Preguntas.Remove(Preguntas[i]);      
             }
         }
+        Console.WriteLine(correcta);
         return correcta;  
     }
     

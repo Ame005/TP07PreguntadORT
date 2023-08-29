@@ -206,41 +206,61 @@ section .inicio-centrado .btn-outline-warning {
   justify-content: center;
   align-items: center;
 }
-.respuesta form a{
+
+.respuesta form .opcion{
   width: 100%;
   height: auto;
-}
-.respuesta form a{
-  width: 100%;
-  height: auto;
-  margin: 1.5%;
+  margin: 2%;
+  margin-bottom: 10px;
   padding: 2.5% 10%;  
   background-color: #f1f1f1;
   border-radius: 20px;
-}
-.respuesta form a:hover{
-  background-color: #c5c5c5;
-}
-.respuesta a h5
-{
   color: black;
-  width: 100%;
-  margin: 0;
   font-size: 24px;
   font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
   font-weight: bold;
 }
-
-.respuesta form a
-{
-  text-decoration: none;
+.respuesta form .opcion:hover{
+  background-color: #c5c5c5;
 }
-a [type=radio]
+.respuesta form .opcion[type=radio]
 {
+  width: 100%;
+  height: auto;
+  padding: 2.5% 10%;
   cursor: pointer;
 }
+.respuesta form .opcion[type=radio]:checked
+{
+  padding: 2.5% 10%;
+  text-decoration: underline;
+  width: 100%;
+  height: auto;
+  background-color: #c5c5c5;
+}
+
+
+/*Respuesta View*/
+.verificacionDiv{
+  margin-left: 70%;
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+}
+.juego h1
+{
+  color: white;
+  font-size: 500%;
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  transition: font-size 2s, transform 2s;
+}
+.juego h1:hover{
+  transform: scale(1.1,1);
+}
+
 /*Perdiste*/
-#Perdida {
+#Perdida a{
   width: 100%;
   display: flex;
   justify-content: center;
@@ -265,6 +285,8 @@ a [type=radio]
     50% {color:orange;}
     100% {color: yellow;}
 }
+
+
 /*Victoria*/
 #Victoria {
   display: flex;

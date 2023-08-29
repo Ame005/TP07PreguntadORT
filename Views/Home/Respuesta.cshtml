@@ -1,61 +1,14 @@
-<section class="juego">
-    <main class="pregunta">
-        <div>
-            <h5>@ViewBag.Categorias[ViewBag.PreguntaProxima.IdCategoria-2].Nombre</h5>
-            <p>@ViewBag.PreguntaProxima.Enunciado</p>
-        </div>
-        <div>
-            <img src="@ViewBag.PreguntaProxima.Foto">
-        </div>
-    </main>
-    <main class="respuesta">
-        @foreach (Respuesta respuesta in ViewBag.RespuestasProximas)
+<body class="juego">
+    <div class="verificacionDiv">
+        @if(ViewBag.Acierto)
         {
-            <label><input type="radio" name="respuesta" value="@respuesta.IdRespuesta">
-                <div class="@respuesta.Correcta">
-                    <h5>@respuesta.Contenido</h5>
-                    
-                </div>
-                
-            </label>
+            <script type="text/javascript" src="/js/confetti-effect.js"></script>
+            <h1>¡Respuesta Correcta!</h1>
         }
-    </main>
-</section>
-
-    @if(ViewBag.Acierto){
-        <main class="pregunta">
-            <div>
-                <p>@ViewBag.PreguntaProxima.Enunciado</p>
-            </div>
-            <div>
-                <img src="@ViewBag.PreguntaProxima.Foto">
-            </div>
-        </main>
-        <main class="respuesta">
-            @foreach (Respuesta respuesta in ViewBag.RespuestasProximas)
-            {
-                @if(respuesta.IdRespuesta==ViewBag.RespuestaCorrecta){
-                    <label>
-                        <div class="@respuesta.Correcta">
-                            <h5>@respuesta.Contenido</h5>
-                        </div>
-                    </label>
-                }else if(respuesta.IdRespuesta==ViewBag.RespuestaIncorrecta){
-                    <label>
-                        <div>
-                            <h5>@respuesta.Contenido</h5>
-                        </div>
-                    </label>
-                }else{
-                    <label>
-                        <div>
-                            <h5>@respuesta.Contenido</h5>
-                        </div>
-                    </label>
-                }
-            }
-        </main>
-        <a href='UrlAction("Jugar", new {acierto=ViewBag.Acierto})'>
-            <button>Continuar</button>
-        </a>
-    }
+        else
+        {
+            <h1>¡Respuesta Incorrecta!</h1>
+        }   
+        <a href='@Url.Action("Jugar")'><button type="submit" class="btn btn-warning">CONTINUE >></button></a>
+    </div>
+</body>

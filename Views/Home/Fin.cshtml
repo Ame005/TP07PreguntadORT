@@ -1,10 +1,13 @@
 <section>
-    @if(!ViewBag.Acierto){
-        <div id="Perdida"><a href='@Url.Action("Index")'><h1>PERDISTE :(</h1></a></div>
-    }else if (ViewBag.Puntaje==1000||ViewBag.PreguntaProxima==null){
-        <div id="Victoria"><a href='@Url.Action("Index")'><h1>¡GANASTE!</h1></a></div>
-    }
-    <a href='@Url.Action("ConfigurarJuego")'>
+        <div id="Victoria">
+            
+            <a href='@Url.Action("Index")'>
+                <h1>Fin del Juego</h1>
+                <h5>Usuario: @Juego.Username</h5>
+                <h5>Puntos:@Juego.PuntajeActual </h5>
+            </a>
+        </div>
+    <a href='@Url.Action("Index")'>
         <button type="button" class="btn btn-warning">PLAY AGAIN</button>
     </a>
 </section>
