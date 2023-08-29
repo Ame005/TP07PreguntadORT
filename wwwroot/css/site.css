@@ -233,7 +233,6 @@ section .inicio-centrado .btn-outline-warning {
 .respuesta form .opcion[type=radio]:checked
 {
   padding: 2.5% 10%;
-  text-decoration: underline;
   width: 100%;
   height: auto;
   background-color: #c5c5c5;

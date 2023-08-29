@@ -3,10 +3,11 @@
             
             <a href='@Url.Action("Index")'>
                 <h1>Fin del Juego</h1>
-                <h5>Usuario: @Juego.Username</h5>
-                <h5>Puntos:@Juego.PuntajeActual </h5>
+                
             </a>
         </div>
+        <h5>Usuario: @ViewBag.Username</h5>
+        <h5>Puntos:@Juego.PuntajeActual </h5>
     <a href='@Url.Action("Index")'>
         <button type="button" class="btn btn-warning">PLAY AGAIN</button>
     </a>
