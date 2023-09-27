@@ -20,9 +20,8 @@ public static class Juego {
     {
         return BD.ObtenerDificultades();
     }
-    public static void CargarPartida(string username, int dificultad, int categoria)
+    public static void CargarPartida(int dificultad, int categoria)
     {
-        Username=username;
         Preguntas=BD.ObtenerPreguntas(dificultad,categoria);
         Respuestas=BD.ObtenerRespuestas(Preguntas);
     }

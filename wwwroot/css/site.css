@@ -153,6 +153,7 @@ section .inicio-centrado .btn-outline-warning {
     height: auto;
     color: white;
     margin: 1%;
+    margin-top: 5%;
     display: flex;
     flex-direction: row;
     justify-content: space-around;
@@ -215,6 +216,7 @@ section .inicio-centrado .btn-outline-warning {
   padding: 2.5% 10%;  
   background-color: #f1f1f1;
   border-radius: 20px;
+  border: none;
   color: black;
   font-size: 24px;
   font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
@@ -223,25 +225,12 @@ section .inicio-centrado .btn-outline-warning {
 .respuesta form .opcion:hover{
   background-color: #c5c5c5;
 }
-.respuesta form .opcion[type=radio]
-{
-  width: 100%;
-  height: auto;
-  padding: 2.5% 10%;
-  cursor: pointer;
-}
-.respuesta form .opcion[type=radio]:checked
-{
-  padding: 2.5% 10%;
-  width: 100%;
-  height: auto;
-  background-color: #c5c5c5;
-}
+
 
 
 /*Respuesta View*/
 .verificacionDiv{
-  margin-left: 70%;
+  margin-left: 55%;
   width: 50%;
   display: flex;
   flex-direction: column;

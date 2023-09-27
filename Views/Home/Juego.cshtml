@@ -1,4 +1,4 @@
-<body  class="juego">
+<body>
 <section>
     <main class="pregunta">
         <div>
@@ -13,16 +13,13 @@
     
     <main class="respuesta">
     <form action='@Url.Action("VerificarRespuesta")' method="post">        
-        
+        <input type="hidden" name="idPregunta" value="@ViewBag.PreguntaProxima.IdPregunta">
         @foreach (Respuesta respuesta in ViewBag.RespuestasProximas)
         {
-            <div class="opcion">
-                <input type="hidden" name="idPregunta" value="@respuesta.IdPregunta">
-                <input type="radio" class="opcion" name="idRespuesta" value="@respuesta.IdRespuesta">
-                <h5>@respuesta.Contenido</h5>
-            </div>
+            <button class='opcion' name="idRespuesta" value=@respuesta.IdRespuesta type="submit">@respuesta.Contenido</button>
+            
         }
-        <button type="submit" class="btn btn-warning">Verificar</button>
+        
        
     </form>
 </main>

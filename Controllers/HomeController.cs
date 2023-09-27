@@ -11,14 +11,18 @@ public class HomeController : Controller
     public IActionResult ConfigurarJuego(string username)
     {
         Juego.InicializarJuego(username);
+        Juego.Username=username;
         ViewBag.Categorias= Juego.ObtenerCategorias();
         ViewBag.Dificultades= Juego.ObtenerDificultades();
         return View("ConfigurarJuego");
     }
-    public IActionResult Comenzar(string username, int dificultad, int categoria){
-        ViewBag.Username=username;
-        Juego.CargarPartida(username,dificultad,categoria);
-        if (Juego.Preguntas.Count()>0 && dificultad!=0 && categoria!=0)
+    public IActionResult Comenzar(int dificultad, int categoria){
+        if(dificultad==0)
+            dificultad=-1;
+        if(categoria==0)
+            categoria=-1;
+        Juego.CargarPartida(dificultad,categoria);
+        if (Juego.Preguntas.Count()>0)
             return RedirectToAction("Jugar");
         else
             return View("ConfigurarJuego");
@@ -29,6 +33,7 @@ public class HomeController : Controller
         (que proviene del método ObtenerProximaPregunta. Si ya no hay más preguntas disponibles, retorna la 
         view Fin. Si el método retorna una pregunta, invoca a ObtenerProximasRespuestas de la clase Juego 
         guardando estos datos en ViewBag y retorna la view Juego.*/
+        ViewBag.Username=Juego.Username;
         ViewBag.Porcentaje=1;
         ViewBag.Puntaje=Juego.PuntajeActual;
         ViewBag.PreguntasCorrectas=Juego.CantidadPreguntasCorrectas;
