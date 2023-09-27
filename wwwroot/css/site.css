@@ -11,6 +11,7 @@ html {
 }
 body {
   margin:0;
+  padding-top: 5%;
   background-image: url("../img/background-index.jpg");
   background-repeat: no-repeat;
   background-size: cover;
@@ -151,17 +152,16 @@ section .inicio-centrado .btn-outline-warning {
 .pregunta{
     width: 50%;
     height: auto;
-    color: white;
+    color: black;
     margin: 1%;
-    margin-top: 5%;
     display: flex;
     flex-direction: row;
     justify-content: space-around;
     flex-wrap: wrap;
     padding: 20px;
     border-radius: 50px;
-    background-color: #790000;
-    box-shadow: 0px 0px 10px 10px #8c0000 ;
+    background-color: #daa520;
+    box-shadow: 0px 0px 10px 10px rgba(218, 165, 32,0.9)  ;
 }
 .pregunta div{
   width: 40%;
@@ -279,7 +279,7 @@ section .inicio-centrado .btn-outline-warning {
 #Victoria {
   display: flex;
   justify-content: center;
-  margin-top: 23%;
+  margin-top: 17%;
   width: 100%;
   font-size: 100%;
   background: none;
